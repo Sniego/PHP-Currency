@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %} {% block title %}Entry index{% endblock %} {% block body %}
+<h1>Entry index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Currenct Tag</th>
+            <th>Value PLN</th>
+            <th>Vlaue After</th>
+            <th>Date</th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry.id }}</td>
+            <td>{{ entry.city }}</td>
+            <td>{{ entry.country }}</td>
+            <td>{{ entry.tag }}</td>
+            <td>{{ entry.valuePln }} PLN</td>
+            <td>{{ entry.vlaueAfter }} {{ entry.tag }}</td>
+            <td>{{ entry.date ? entry.date|date('Y-m-d H:i:s') : '' }}</td>
+            <td>
+                <form method="get" action="{{ path('entry_show', {'id': entry.id}) }}">
+                    <button class="btn">Show</button>
+                </form>
+            </td>
+            <td>
+                <form method="get" action="{{ path('entry_edit', {'id': entry.id}) }}">
+                    <button class="btn">Edit</button>
+                </form>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="7">no records found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<form method="get" action="{{ path('entry_new') }}">
+        <button class="btn">Create new</button>
+</form>
+
+{% endblock %}

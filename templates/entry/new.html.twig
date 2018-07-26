@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Entry{% endblock %}
+
+{% block body %}
+    <h1>Create new Entry</h1>
+
+    {{ include('inc/_form.html.twig') }}
+
+   
+    <a href="{{ path('entry_index') }}" class="btn btn-primary">Back</a>
+   
+    
+{% endblock %}
